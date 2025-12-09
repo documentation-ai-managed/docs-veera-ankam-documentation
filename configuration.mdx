@@ -1,0 +1,125 @@
+---
+title: Configuring Your Space
+description: Customize your VEERA ANKAM documentation environment with branding, themes, and user settings.
+---
+
+## Overview
+
+Customize your VEERA ANKAM documentation space to match your brand and workflow. Set brand colors like `#3B82F6`, apply themes, manage user permissions, and configure search and notifications. These settings enhance usability and ensure secure access for your team.
+
+<Columns cols={3}>
+  <Card title="Brand Colors & Themes" icon="palette" href="#brand-colors">
+    Apply your brand color and switch between light/dark modes.
+  </Card>
+  <Card title="User Permissions" icon="users" href="#permissions">
+    Control who can edit, view, or admin your docs.
+  </Card>
+  <Card title="Search & Notifications" icon="bell" href="#search-notifications">
+    Fine-tune search indexing and alert preferences.
+  </Card>
+</Columns>
+
+<Callout kind="tip">
+  Save changes in the admin dashboard under **Settings > Space Configuration**.
+</Callout>
+
+## Setting Brand Colors and Themes
+
+Update your space's appearance to reflect your brand identity.
+
+<Steps>
+  <Step title="Access Settings" icon="settings">
+    Navigate to **Admin > Space Settings** in the sidebar.
+  </Step>
+  <Step title="Set Brand Color" icon="palette">
+    Enter your hex code, such as `#3B82F6` for primary blue.
+  </Step>
+  <Step title="Choose Theme" icon="moon">
+    Select **Light**, **Dark**, or **Auto** from the dropdown.
+  </Step>
+  <Step title="Preview & Save" icon="save">
+    Preview changes and click **Apply**.
+  </Step>
+</Steps>
+
+Configure themes via the `config.json` file for advanced control.
+
+<CodeGroup tabs="JSON,YAML">
+  ```json
+  {
+    "branding": {
+      "primaryColor": "#3B82F6",
+      "theme": "dark"
+    }
+  }
+  ```
+  ```yaml
+  branding:
+    primaryColor: "#3B82F6"
+    theme: dark
+  ```
+</CodeGroup>
+
+## Managing User Permissions
+
+Define roles to secure your documentation. Roles include Viewer, Editor, and Admin.
+
+| Role     | View | Edit | Delete | Admin |
+|----------|------|------|--------|-------|
+| Viewer   | ✅   | ❌   | ❌     | ❌    |
+| Editor   | ✅   | ✅   | ❌     | ❌    |
+| Admin    | ✅   | ✅   | ✅     | ✅    |
+
+<Expandable title="Advanced Permission Rules" default-open="false">
+
+Use role-based access control (RBAC) in your config.
+
+```javascript
+const permissions = {
+  viewer: ['read'],
+  editor: ['read', 'write'],
+  admin: ['read', 'write', 'delete', 'manage']
+};
+```
+
+Assign users via the dashboard: **Users > Add Member > Select Role**.
+
+</Expandable>
+
+## Configuring Search and Notifications
+
+Tailor search to index custom fields and set notification preferences.
+
+<Tabs>
+  <Tab title="Search Settings" icon="search">
+    Enable full-text search and custom indexing.
+
+    <ParamField path="query.indexFields" param-type="array" required="true">
+      Array of fields to index, e.g., `["title", "tags", "content"]`.
+    </ParamField>
+
+    ```json
+    {
+      "search": {
+        "indexFields": ["title", "tags", "content"],
+        "minLength": 3
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="Notifications" icon="bell">
+    Choose channels for updates.
+
+    <ul>
+      <li>Email: Daily digests</li>
+      <li>Slack: Real-time alerts</li>
+      <li>In-app: Banners for mentions</li>
+    </ul>
+  </Tab>
+</Tabs>
+
+<Callout kind="info">
+  Search reindexes automatically after config changes. Test with sample queries.
+</Callout>
+
+These configurations make your VEERA ANKAM space tailored and efficient. Review settings periodically as your team grows.

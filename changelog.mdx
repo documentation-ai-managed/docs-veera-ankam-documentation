@@ -1,0 +1,146 @@
+---
+title: Changelog
+description: Track the evolution of VEERA ANKAM with details on new features, improvements, and fixes.
+---
+
+## Overview
+
+VEERA ANKAM evolves rapidly to deliver better documentation experiences. You stay informed on releases through this changelog, which details new features, improvements, bug fixes, and breaking changes. Check here before upgrading to understand impacts.
+
+<Callout kind="info">
+Subscribe to our RSS feed or GitHub notifications to get updates on new releases automatically.
+</Callout>
+
+## Version Summary
+
+Review key releases at a glance:
+
+| Version | Date       | Type              | Changes Summary                  |
+|---------|------------|-------------------|----------------------------------|
+| v1.2.0  | 2024-10-15 | Feature, Bugfix   | Real-time collab, performance    |
+| v1.1.0  | 2024-09-20 | Feature, Security | Dark mode, auth fixes            |
+| v1.0.0  | 2024-08-10 | Initial Release   | Core docs engine, auth, UI       |
+
+## Recent Releases
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Added real-time collaboration for multi-user editing sessions
+- Introduced version history with diff viewer for document changes
+
+## Improvements
+
+- Enhanced search with fuzzy matching and syntax highlighting
+- Optimized rendering for documents `>500KB` in size
+
+## Bug Fixes
+
+- Fixed markdown table alignment issues in preview mode
+- Resolved export failures for documents containing `{custom components}`
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "security"]}>
+
+## New Features
+
+- Implemented dark mode toggle with system preference sync
+- Added analytics dashboard for document usage metrics
+
+## Security Fixes
+
+- Patched XSS vulnerability in user-uploaded images
+- Strengthened JWT token validation for API endpoints
+
+## Improvements
+
+- Reduced bundle size by `25%` through tree-shaking
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["breaking", "feature"]}>
+
+## Initial Release
+
+- Core documentation engine with MDX support
+- User authentication via OAuth and API keys
+- Responsive UI with customizable themes
+
+## Breaking Changes
+
+- Migrated from v0.x config format; update your `veera.config.js`
+
+</Update>
+
+## Upgrade Guide
+
+Follow these steps to upgrade VEERA ANKAM smoothly.
+
+<Steps>
+  <Step title="Backup" icon="database">
+    Export your current documentation site:
+    
+    ```bash
+    npx veera-ankam export --output ./backup
+    ```
+  </Step>
+  
+  <Step title="Update Package" icon="package">
+    Install the latest version based on your platform.
+  </Step>
+  
+  <Step title="Migrate Config" icon="settings">
+    Run the migration tool if upgrading from `v1.0.0`:
+    
+    ```bash
+    npx veera-ankam migrate
+    ```
+  </Step>
+  
+  <Step title="Deploy" icon="rocket">
+    Rebuild and deploy your site.
+  </Step>
+</Steps>
+
+<Tabs>
+  <Tab title="npm" icon="package">
+    <CodeGroup tabs="default,global">
+      ```bash
+      npm install veera-ankam@latest
+      ```
+      
+      ```bash
+      npm install -g veera-ankam@latest
+      ```
+    </CodeGroup>
+  </Tab>
+  
+  <Tab title="Yarn" icon="package">
+    ```bash
+    yarn add veera-ankam@latest
+    ```
+  </Tab>
+  
+  <Tab title="Docker" icon="docker">
+    ```bash
+    docker pull veeraankam/docs:latest
+    docker run -p 3000:3000 veeraankam/docs:latest
+    ```
+  </Tab>
+</Tabs>
+
+<Columns cols={2}>
+  <Card title="Contribute" icon="github" href="https://github.com/veera-ankam/docs" target="_blank">
+    Found a bug? Submit a PR to help improve VEERA ANKAM.
+  </Card>
+  
+  <Card title="Release Notes" icon="book-open" href="/docs/releases">
+    Detailed notes for every minor and patch release.
+  </Card>
+</Columns>
+
+<Expandable title="Deprecated Features" default-open="false">
+In v1.2.0, the legacy `veera-legacy-renderer` is removed. Migrate to the new MDX engine for full feature support.
+</Expandable>

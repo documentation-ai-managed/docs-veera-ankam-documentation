@@ -1,0 +1,115 @@
+---
+title: Quickstart Guide
+description: Get up and running with VEERA ANKAM by setting up your first documentation space in minutes.
+---
+
+## Overview
+
+VEERA ANKAM lets you create organized documentation spaces for your projects. Follow these steps to set up your first space, upload documents, and navigate the interface. You complete the process in under five minutes.
+
+## Create a New Documentation Space
+
+Use the dashboard to create your space.
+
+<Steps>
+  <Step title="Sign In" icon="log-in">
+    Visit `https://app.veeraankam.com` and sign in with your account credentials.
+  </Step>
+  <Step title="Access Dashboard" icon="layout">
+    Click the **New Space** button in the top-right corner.
+  </Step>
+  <Step title="Configure Space" icon="settings">
+    Enter a name like `My Project Docs`, select a template (e.g., "API Reference"), and choose visibility: public or private.
+  </Step>
+  <Step title="Publish Space" icon="rocket">
+    Click **Create**. Your space appears in the sidebar.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Choose the "Empty Space" template for full customization.
+</Callout>
+
+## Upload and Organize Initial Documents
+
+Upload files via multiple methods. Organize them into folders right away.
+
+<Tabs>
+  <Tab title="Drag & Drop" icon="upload">
+    <Steps>
+      <Step title="Select Files">
+        Open your space and drag Markdown, PDF, or image files into the editor pane.
+      </Step>
+      <Step title="Auto-Organize">
+        VEERA ANKAM creates folders based on file prefixes, like `api/` for API docs.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="CLI" icon="terminal">
+    Install the CLI and sync files.
+
+    <CodeGroup tabs="npm,yarn">
+      ```bash
+      npm install -g @veeraankam/cli
+      ```
+      ```bash
+      yarn global add @veeraankam/cli
+      ```
+    </CodeGroup>
+
+    ```bash
+    veeraankam login
+    veeraankam space upload my-project-docs ./docs-folder
+    ```
+  </Tab>
+  <Tab title="API" icon="code">
+    Use the REST API for automation.
+
+    <Request tabs="cURL,JavaScript" show-lines="true">
+      ```bash
+      curl -X POST https://api.veeraankam.com/v1/spaces/{spaceId}/upload \
+        -H "Authorization: Bearer YOUR_API_TOKEN" \
+        -F "file=@/path/to/docs.md"
+      ```
+      ```javascript
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+      fetch(`https://api.veeraankam.com/v1/spaces/${spaceId}/upload`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${apiToken}` },
+        body: formData,
+      });
+      ```
+    </Request>
+  </Tab>
+</Tabs>
+
+## Navigate the Interface
+
+Key sections help you manage content efficiently.
+
+<Columns cols={3}>
+  <Card title="Sidebar" icon="sidebar" href="/docs/sidebar">
+    Access spaces, search documents, and manage teams.
+  </Card>
+  <Card title="Editor" icon="edit-3" href="/docs/editor">
+    Edit Markdown with live preview and AI suggestions.
+  </Card>
+  <Card title="Search" icon="search" href="/docs/search">
+    Full-text search across all documents and versions.
+  </Card>
+</Columns>
+
+## Next Steps
+
+<Expandable title="Troubleshooting Common Issues" default-open="false">
+  - **Upload fails?** Check file size (`<10MB`) and API token permissions.
+  - **Space not visible?** Refresh the dashboard or verify team access.
+  - Run `veeraankam status` via CLI for diagnostics.
+</Expandable>
+
+Explore advanced features like version control and integrations.
+
+<Callout kind="success">
+  Congratulations! Your documentation space is live. Share the public URL with your team.
+</Callout>
